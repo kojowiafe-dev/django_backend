@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CreateUserView, get_users, delete_user, get_user, CreateEventView, get_events, get_event, delete_event, CreateAttendeeView, get_attendee, get_attendees, delete_attendee, EventAttendeeListView, get_sermon, get_sermons, delete_sermon, get_birthdays
+from .views import get_users, delete_user, get_user, get_events, get_event, delete_event, get_attendee, get_attendees, delete_attendee, EventAttendeeListView, get_sermon, get_sermons, delete_sermon, get_birthdays, get_announcements
 
 urlpatterns = [
     # path('users/create/', CreateUserView.as_view(), 'add_user'),
@@ -18,5 +18,6 @@ urlpatterns = [
     path('sermons/', get_sermons, name='get_sermons'),
     path('sermons/<uuid:pk>/', get_sermon, name='get_sermon'),
     path('sermons/delete/<int:pk>/', delete_sermon, name='delete_sermon'),
+    path('announcements/', get_announcements, name='get_announcements'),
     # path('announcements/')
 ]

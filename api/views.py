@@ -21,6 +21,7 @@ class CreateUserView(APIView):
             return Response({"message": "User registered successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LoginView(APIView):
     def post(self, request):
         email = request.data.get('email')
@@ -99,7 +100,7 @@ def delete_event(request, pk):
 class CreateAttendeeView(generics.CreateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -136,7 +137,7 @@ def delete_attendee(request, pk):
 
 class EventAttendeeListView(generics.ListAPIView):
     serializer_class = AttendeeSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         event_id = self.kwargs['event_id']
@@ -146,7 +147,7 @@ class EventAttendeeListView(generics.ListAPIView):
 class CreateSermonView(generics.CreateAPIView):
     queryset = Sermon.objects.all()
     serializer_class = SermonSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 
@@ -194,7 +195,12 @@ def get_birthdays(request):
 class CreateAnnouncementsView(generics.CreateAPIView):
     queryset = Announcements.objects.all()
     serializer_class = AnnouncementsSerializers
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
+@api_view(['GET'])
+def get_announcements(request):
+    announcements = Announcements.objects.all()
+    serializedData = AnnouncementsSerializers(announcements, many=True).data
+    return Response(serializedData, status=status.HTTP_200_OK)
 # date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
