@@ -182,8 +182,12 @@ from datetime import date
 def get_birthdays(request):
     users = User.objects.all()
     serializedData = UserSerializer(users, many=True).data
-    results = [info for info in serializedData if info["date_of_birth"] == str(date.today())]
-    # print(date.today())
+
+    today_date = [i for i in str(date.today())][-2:]
+    today_month = [i for i in str(date.today())][5:7]
+    date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
+
+    results = [info for info in serializedData if [i for i in info["date_of_birth"]][-2:] == today_date and [i for i in info["date_of_birth"]][5:7] == today_month]
 
     return Response(results, status=status.HTTP_200_OK)
 
