@@ -1,20 +1,27 @@
 from django.contrib.auth import get_user_model
 from .models import Event, Attendee, Sermon, PrayerRequest, Announcements
 from rest_framework import serializers
+from ..accounts import models
 
 
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
-        model = User
-        # fields = ['id', 'email', 'password', 'username', 'role', 'date_of_birth']
-        fields = '__all__'
-        extra_kwargs = {"password": {"write_only": True}}
-        
+        model = models.CustomUser
+        fields = ['id', 'username', 'email', 'password', 'role', 'date_of_birth']
+
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        return models.CustomUser.objects.create_user(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            password=validated_data['password'],
+            role=validated_data.get('role', 'user'),
+            date_of_birth=validated_data.get('date_of_birth')
+        )
+
     
     
 class EventSerializer(serializers.ModelSerializer):
