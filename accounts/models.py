@@ -28,7 +28,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=8)
+    password = models.CharField(max_length=10)
     username = models.CharField(max_length=20)
     role = models.CharField(max_length=10, choices=[
         ('admin', 'Admin'),
