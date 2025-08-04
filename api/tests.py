@@ -72,7 +72,7 @@ class SermonModelTest(TestCase):
 
 class ChurchRoleTest(TestCase):
     def setUp(self):
-        self.admin = User.objects.create_user(username='admin', date_of_birth='2025-08-04', password='200509', role='admin')
+        self.admin = User.objects.create_user(username='admin', email='admin@gmail.com', date_of_birth='2025-08-04', password='200509', role='admin')
         self.member = User.objects.create_user(username='member', password='200509', role='member')
         self.pastor = User.objects.create_user(username='pastor', password='200509', role='pastor')
         self.sermon = Sermon.objects.create(title='Faith', creator=self.pastor)
