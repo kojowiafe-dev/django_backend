@@ -185,7 +185,7 @@ def get_birthdays(request):
 
     today_date = [i for i in str(date.today())][-2:]
     today_month = [i for i in str(date.today())][5:7]
-    date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
+    # date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
 
     results = [info for info in serializedData if [i for i in info["date_of_birth"]][-2:] == today_date and [i for i in info["date_of_birth"]][5:7] == today_month]
 
