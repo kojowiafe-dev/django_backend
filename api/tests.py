@@ -112,3 +112,7 @@ class ChurchRoleTest(TestCase):
     # print(type(str(date.today())))
     def test_user_birthday(self):
         self.assertEqual(self.admin.date_of_birth, str(date.today()))
+        self.assertEqual([i for i in self.admin.date_of_birth[-2:]], [i for i in str(date.today())[-2:]])
+        # today = str(date.today())
+        # print([i for i in today][-2:])
+        # print([i for i in self.admin.date_of_birth][-2:])

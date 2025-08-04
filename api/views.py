@@ -183,6 +183,7 @@ def get_birthdays(request):
     users = User.objects.all()
     serializedData = UserSerializer(users, many=True).data
     results = [info for info in serializedData if info["date_of_birth"] == str(date.today())]
+    # print(date.today())
 
     return Response(results, status=status.HTTP_200_OK)
 
