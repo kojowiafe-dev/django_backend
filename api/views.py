@@ -185,7 +185,6 @@ def get_birthdays(request):
 
     today_date = [i for i in str(date.today())][-2:]
     today_month = [i for i in str(date.today())][5:7]
-    # date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
 
     results = [info for info in serializedData if [i for i in info["date_of_birth"]][-2:] == today_date and [i for i in info["date_of_birth"]][5:7] == today_month]
 
@@ -198,30 +197,4 @@ class CreateAnnouncementsView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# class GetBirthdayList(generics.ListAPIView):
-#     serializer_class = UserSerializer
-#     permission_classes = [AllowAny]
-
-#     def get_queryset(self):
-#         date_of_birth = self.kwargs['date_of_birth']
-#         return User.objects.filter(date_of_birth==str(date.today()))
-    
-
-# class EventAttendeeListView(generics.ListAPIView):
-#     serializer_class = AttendeeSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def get_queryset(self):
-#         event_id = self.kwargs['event_id']
-#         return Attendee.objects.filter(event__id=event_id)
-
-
-# @api_view(['GET'])
-# def get_event_attendees(request, event_id):
-#     try:
-#         event = Event.objects.get(pk=event_id)
-#         attendees = event.attendees.all()
-#         serializedData = AttendeeSerializer(attendees, many=True).data
-#     except not Event.objects.get(pk=event_id).exists():
-#         return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
-#     return Response(serializedData, status=status.HTTP_200_OK)
+# date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
