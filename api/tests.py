@@ -27,7 +27,7 @@ class EventModelTest(TestCase):
 
 
     def test_event_has_all_fields(self):
-        user = User.objects.create_user(username='creator_user', password='200509')
+        user = User.objects.create_user(username='creator_user', email='user@gmail.com', password='200509')
         event = Event.objects.create(title='Serve GOD', creator=user)
 
         self.assertEqual(str(event), event.title)
@@ -43,7 +43,7 @@ class AttendeeModelTest(TestCase):
 
 
     def test_attendee_model_has_all_fields(self):
-        user = User.objects.create_user(username='user', password='200509')
+        user = User.objects.create_user(username='user', email='user@gmail.com', password='200509')
         event = Event.objects.create(title='Serve GOD', creator=user)
         attendee = Attendee.objects.create(status='Present', user=user, event=event)
 
@@ -62,7 +62,7 @@ class SermonModelTest(TestCase):
 
 
     def test_sermon_model_has_all_fields(self):
-        user = User.objects.create_user(username='user', password='200509')
+        user = User.objects.create_user(username='user', email='user@gmail.com', password='200509')
         sermon = Sermon.objects.create(title='Love GOD', creator=user)
 
         self.assertEqual(str(sermon), sermon.title)
@@ -73,8 +73,8 @@ class SermonModelTest(TestCase):
 class ChurchRoleTest(TestCase):
     def setUp(self):
         self.admin = User.objects.create_user(username='admin', email='admin@gmail.com', date_of_birth='2025-08-04', password='200509', role='admin')
-        self.member = User.objects.create_user(username='member', password='200509', role='member')
-        self.pastor = User.objects.create_user(username='pastor', password='200509', role='pastor')
+        self.member = User.objects.create_user(username='member', email='member@gmail.com', password='200509', role='member')
+        self.pastor = User.objects.create_user(username='pastor', email='pastor@gmail.com', password='200509', role='pastor')
         self.sermon = Sermon.objects.create(title='Faith', creator=self.pastor)
 
 
