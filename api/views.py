@@ -168,19 +168,12 @@ def delete_sermon(request, pk):
     return Response({"message": "Sermon deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
-from datetime import date, timezone
+from datetime import date
 @api_view(['GET'])
 def get_birthdays(request):
     users = User.objects.all()
     serializedData = UserSerializer(users, many=True).data
-    # user_birthday = users.objects.get(date_of_birth == str(date.today()))
-    # user_birthday
-    # for info in serializedData:
-    #     if info["date_of_birth"] == date.today():
-
     results = [info for info in serializedData if info["date_of_birth"] == str(date.today())]
-    # print(date.year())
-    # print(timezone.min())
 
     return Response(results, status=status.HTTP_200_OK)
 

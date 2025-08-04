@@ -18,4 +18,5 @@ urlpatterns = [
     path('sermons/', get_sermons, name='get_sermons'),
     path('sermons/<uuid:pk>/', get_sermon, name='get_sermon'),
     path('sermons/delete/<int:pk>/', delete_sermon, name='delete_sermon'),
+    # path('announcements/')
 ]
