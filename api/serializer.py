@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from .models import Event, Attendee, Sermon, PrayerRequest, Announcements
 from rest_framework import serializers
-from ..accounts import models
+from accounts import models
 
 
 User = get_user_model()
