@@ -100,10 +100,7 @@ def delete_event(request, pk):
 class CreateAttendeeView(generics.CreateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
-    # permission_classes = [IsAuthenticated]
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    permission_classes = [AllowAny]
 
 
 @api_view(['GET'])
