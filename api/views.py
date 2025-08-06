@@ -138,7 +138,11 @@ class EventAttendeeListView(generics.ListAPIView):
 
     def get_queryset(self):
         event_id = self.kwargs['event_id']
-        return Attendee.objects.filter(event__id=event_id)
+        attendees = Attendee.objects.filter(event__id=event_id)
+        # users_attended = [user for user in attendees if user[""]]
+        # users_attended = User.objects.filter(id=attendee["user"]["id"])
+        # return Attendee.objects.filter(event__id=event_id)
+        return attendees
     
 
 class CreateSermonView(generics.CreateAPIView):
