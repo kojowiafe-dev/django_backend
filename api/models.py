@@ -29,9 +29,6 @@ class Attendee(models.Model):
     def __str__(self):
         return self.status
     
-    # def theUser(self):
-    #     return self.user
-    
     
 class Sermon(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
