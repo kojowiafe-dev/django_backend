@@ -203,4 +203,13 @@ def get_announcements(request):
     announcements = Announcements.objects.all()
     serializedData = AnnouncementsSerializers(announcements, many=True).data
     return Response(serializedData, status=status.HTTP_200_OK)
-# date_of_birth = [[i for i in info["date_of_birth"]] for info in serializedData if info["date_of_birth"][-2:] == today_date]
+
+
+@api_view(['DELETE'])
+def delete_announcements(request, pk):
+    try:
+        announcements = Announcements.objects.get(pk=pk)
+        serializedData = AnnouncementsSerializers(announcements).data
+    except not Announcements.objects.get(pk=pk).exists():
+        return Response({"error": "Announcement not found"}, status=status.HTTP_404_NOT_FOUND)
+    return Response({"message": "Announcement deleted sucessfully"}, status=status.HTTP_204_NO_CONTENT)
