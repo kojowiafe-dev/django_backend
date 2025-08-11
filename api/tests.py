@@ -100,7 +100,7 @@ class ChurchRoleTest(TestCase):
         self.assertTrue('protection' in prayer_request.title)
 
 
-    
+
     def test_member_cannot_create_sermon_directly(self):
         if self.member.role != 'pastor':
             with self.assertRaises(Exception):
