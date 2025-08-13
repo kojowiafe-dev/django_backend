@@ -72,7 +72,7 @@ class SermonModelTest(TestCase):
 
 class ChurchRoleTest(TestCase):
     def setUp(self):
-        self.admin = User.objects.create_user(username='admin', email='admin@gmail.com', date_of_birth='2025-08-12', password='200509', role='admin')
+        self.admin = User.objects.create_user(username='admin', email='admin@gmail.com', date_of_birth='2025-08-13', password='200509', role='admin')
         self.member = User.objects.create_user(username='member', email='member@gmail.com', password='200509', role='member')
         self.pastor = User.objects.create_user(username='pastor', email='pastor@gmail.com', password='200509', role='pastor')
         self.sermon = Sermon.objects.create(title='Faith', creator=self.pastor)
@@ -105,7 +105,7 @@ class ChurchRoleTest(TestCase):
         if self.member.role != 'pastor':
             with self.assertRaises(Exception):
                 Sermon.objects.create(
-                    title='Love your neighbour',
+                    title='Love your neighbor',
                     preacher=self.member
                 )
 
