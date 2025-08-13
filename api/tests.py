@@ -34,7 +34,6 @@ class EventModelTest(TestCase):
         self.assertEqual(user, event.creator)
 
 
-
 class AttendeeModelTest(TestCase):
     def test_attendee_model_exists(self):
         attendee = Attendee.objects.count()
