@@ -83,13 +83,9 @@ class ChurchRoleTest(TestCase):
         self.assertEqual(self.pastor, self.sermon.creator)
         self.assertEqual(self.pastor.role, 'pastor')
 
-        # print(type(self.pastor))
-
 
     def test_pastor_is_a_valid_user(self):
         self.assertIsInstance(self.sermon.creator, User)
-        # print(f"User type is {type(User)}")
-        # print(f"Pastor type is {type(self.pastor)}")
 
 
 
@@ -113,10 +109,3 @@ class ChurchRoleTest(TestCase):
     def test_user_birthday(self):
         self.assertEqual(self.admin.date_of_birth, str(date.today()))
         self.assertEqual([i for i in self.admin.date_of_birth][-2:], [i for i in str(date.today())][-2:])
-
-        # today_day = [i for i in str(date.today())][-2:]
-        # actual_day = [i for i in self.admin.date_of_birth][-2:]
-        # today = str(date.today())
-        # print([i for i in today][-2:])
-        # print([i for i in self.admin.date_of_birth][-2:])
-        # print([i for i in today])
